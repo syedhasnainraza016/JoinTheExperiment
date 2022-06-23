@@ -15,5 +15,6 @@ export const getTranslation = () => axios.get(`${url}/translation/get-translatio
 export const updateTranslation = (data) => axios.post(`${url}/translation/edit-translation`,data);
 export const deleteTranslation = (id) => axios.delete(`${url}/translation/del-translation/${id}`);
 
+export const getAnswer = (questionId) => axios.get(`${url}/answer/view-answers/${questionId}`);
 
 

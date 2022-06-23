@@ -13,7 +13,10 @@ import { Card, TextField } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { createTranslation,getTranslation } from "../../redux/actions/translationActions";
+import {
+  createTranslation,
+  getTranslation,
+} from "../../redux/actions/translationActions";
 import { useNavigate } from "react-router-dom";
 const style = {
   position: "absolute",
@@ -31,7 +34,7 @@ const style = {
 export default function BasicModal({ open, onClose }) {
   const [age, setAge] = React.useState("");
   const dispatch = useDispatch();
- let navigate=useNavigate()
+  let navigate = useNavigate();
 
   const initialValues = {
     text: "",
@@ -45,11 +48,11 @@ export default function BasicModal({ open, onClose }) {
   });
   const onSubmit = (values, { resetForm }) => {
     alert(JSON.stringify(values, null, 2));
-    dispatch(createTranslation(values))
-  //  navigate("/admin/question")
+    dispatch(createTranslation(values));
+    //  navigate("/admin/question")
     dispatch(getTranslation());
-    resetForm()
-    onClose()
+    resetForm();
+    onClose();
   };
   const formik = useFormik({ initialValues, validationSchema, onSubmit });
 
@@ -77,28 +80,42 @@ export default function BasicModal({ open, onClose }) {
           <Card sx={{ my: 3 }}>
             <Box py={4} px={2}>
               <Typography variant="h5">Text</Typography>
-              <TextField id="outlined-basic" label="Text" variant="outlined"  name="text"
+              <TextField
+                id="outlined-basic"
+                label="Text"
+                variant="outlined"
+                name="text"
                 formik={formik}
                 fullWidth
                 value={formik.values.text}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                error={formik.touched.text && Boolean(formik.errors.text)}/>
-                 <Typography variant="h5">Translation</Typography>
-                <TextField id="outlined-basic" label="Translation" variant="outlined"  name="translate"
+                error={formik.touched.text && Boolean(formik.errors.text)}
+              />
+              <Typography variant="h5">Translation</Typography>
+              <TextField
+                id="outlined-basic"
+                label="Translation"
+                variant="outlined"
+                name="translate"
                 formik={formik}
                 fullWidth
                 value={formik.values.translate}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                error={formik.touched.translate && Boolean(formik.errors.translate)}/>
-             
+                error={
+                  formik.touched.translate && Boolean(formik.errors.translate)
+                }
+              />
+
               <Typography py={2} variant="h5">
                 Select Language
               </Typography>
               <Box sx={{ minWidth: 120, maxWidth: "100%" }}>
                 <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">Language</InputLabel>
+                  <InputLabel id="demo-simple-select-label">
+                    Language
+                  </InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
@@ -109,12 +126,11 @@ export default function BasicModal({ open, onClose }) {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     error={
-                      formik.touched.language&& Boolean(formik.errors.language)
+                      formik.touched.language && Boolean(formik.errors.language)
                     }
                     // helperText={formik.touched.language && formik.errors.language}
                   >
                     <MenuItem value={"dutch"}>Dutch</MenuItem>
-                  
                   </Select>
                 </FormControl>
               </Box>

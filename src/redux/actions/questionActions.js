@@ -26,7 +26,6 @@ export const createQuestion = (question) => async (dispatch) => {
 
 
 
-
   export const updateQuestion = ( question) => async (dispatch) => {
     try {
       const { data } = await api.updateQuestion(question);
@@ -44,6 +43,20 @@ export const createQuestion = (question) => async (dispatch) => {
       await api.deleteQuestion(id);
   
       dispatch({ type: ActionTypes.DELETE_QUESTION, payload: id });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+
+
+  export const getAnswers = (id) => async (dispatch) => {
+    try {
+      const { data } = await api.getAnswer(id);
+      // console.log('get-questions',data);
+      const answers = data.data;
+      // console.log('questionsaaaaaaaaaaaaaaaaaaaa',answers);
+     return dispatch({ type:ActionTypes.GET_ANSWERS, payload:answers  });
     } catch (error) {
       console.log(error.message);
     }

@@ -2,7 +2,8 @@ import { ActionTypes } from '../constants/actions-types'
 const intialState = {
   questions:[],
   user:[],
-  translation:[]
+  translation:[],
+  answers:[]
 };
  
 
@@ -58,4 +59,14 @@ export const register = (state = intialState, { type, payload }) => {
   };
 
 
+  export const getAnswers = (state = intialState, { type, payload }) => {
   
+    switch (type) {
+      
+        case ActionTypes.GET_ANSWERS:
+          return { ...state, answers: payload}
+          
+      default:
+        return state;
+    }
+  };
