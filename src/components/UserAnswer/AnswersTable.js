@@ -17,6 +17,11 @@ const columns = [
     accessor: "answer",
   },
 
+  // {
+  //   Header: "Rating",
+  //   accessor: "rating",
+  // },
+
   {
     Header: "Rating",
     accessor: "rating",
@@ -29,7 +34,7 @@ const AnswersTable = () => {
     dispatch(getAnswers(userInformation?.questionId));
   }, []);
   const answers = useSelector((state) => state.getAnswers.answers);
-  console.log(id, "iddddddddddddddddddddddddd");
+  // console.log(id,"iddddddddddddddddddddddddd")
   return (
     <div>
       <Container>
@@ -48,7 +53,14 @@ const AnswersTable = () => {
           columns={columns}
           data={answers ?? []}
         />
-        <Button variant="contained" onClick={() => dispatch(rateAnswer(id))}>
+        <Button
+          variant="contained"
+          onClick={() =>
+            id?.length == 3
+              ? dispatch(rateAnswer(id))
+              : alert("Please select only 3 answers")
+          }
+        >
           Submit
         </Button>
       </Container>

@@ -13,10 +13,10 @@ const UserInformation = () => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
   const params = useParams();
-  console.log(params.id, "paramsss");
-  let questionId = params?.id;
+  //  console.log(params.id,"paramsss")
+  let questionId = params.id;
   const loginHandler = (e) => {
-    console.log(e, "eeeeeeeeeeeeeeeeeee");
+    // console.log(e,"eeeeeeeeeeeeeeeeeee")
     e.preventDefault();
     let data = {
       userName,
