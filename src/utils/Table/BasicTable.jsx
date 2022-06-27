@@ -22,6 +22,7 @@ import RadioButtonUncheckedIcon from "@mui/icons-material/OndemandVideo";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import ListIcon from "@mui/icons-material/List";
+import Checkbox from '@mui/material/Checkbox';
 
 function BasicTable({
   columns: Columns,
@@ -35,6 +36,7 @@ function BasicTable({
   Thumbnail,
   addVideo,
   videoList,
+  checkbox
 }) {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [page, setPage] = React.useState(0);
@@ -58,7 +60,7 @@ function BasicTable({
       data,
       initialState,
     });
-
+    const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
   return (
     <>
       <TableContainer sx={{ mt: 3 }}>
@@ -98,7 +100,7 @@ function BasicTable({
                   addImage ||
                   addVideo ||
                   Thumbnail ||
-                  videoList) && (
+                  videoList||checkbox) && (
                   <TableCell
                     sx={{
                       bgcolor: "primary.main",
@@ -150,14 +152,15 @@ function BasicTable({
                         addImage ||
                         addVideo ||
                         Thumbnail ||
-                        videoList) && (
+                        videoList ||checkbox) && (
                         <TableCell align="center" size="small">
-                          {addImage && (
+                          {checkbox && (
                             <IconButton
                               color="primary"
-                              onClick={() => addImage(row.values._id)}
+                              onClick={() => checkbox(row.values._id)}
                             >
-                              <AddPhotoAlternateIcon />
+                              
+                              <Checkbox {...label} />
                             </IconButton>
                           )}
                           {addVideo && (

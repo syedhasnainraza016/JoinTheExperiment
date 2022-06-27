@@ -81,3 +81,13 @@ export const createQuestion = (question) => async (dispatch) => {
       console.log(error.message);
     }
   };
+
+  export const rateAnswer = (answer) => async (dispatch) => {
+    try {
+      const { data } = await api.rateAnswer(answer);
+
+      // dispatch({ type:ActionTypes.CREATE_QUESTION, payload: data });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };

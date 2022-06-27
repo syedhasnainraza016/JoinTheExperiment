@@ -17,4 +17,4 @@ export const deleteTranslation = (id) => axios.delete(`${url}/translation/del-tr
 
 export const getAnswer = (questionId) => axios.get(`${url}/answer/view-answers/${questionId}`);
 export const createAnswer = (data) => axios.post(`${url}/answer/add-answer`, data);
-
+export const rateAnswer = (data) => axios.post(`${url}/answer/rate-answer`, data);

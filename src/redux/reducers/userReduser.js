@@ -69,6 +69,8 @@ export const register = (state = intialState, { type, payload }) => {
         return { ...state, answers: [...state.questions,payload] };
         case ActionTypes.GET_ANSWERS:
           return { ...state, answers: payload}
+          case ActionTypes.Rating_ANSWER:
+            return { ...state, answers: payload}
           
       default:
         return state;

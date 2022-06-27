@@ -1,21 +1,22 @@
+import { Button } from '@mui/material';
+import { Container } from '@mui/system';
 import React,{ useEffect, useState} from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { getAnswers} from "../../redux/actions/questionActions";
+import { getAnswers,rateAnswer} from "../../redux/actions/questionActions";
 import BasicTable from '../../utils/Table/BasicTable';
 const userInformation = JSON.parse(localStorage.getItem("userInformation"));
 
 const columns = [
-   
+    {
+        Header: "Id",
+        accessor: "_id",
+      },
 
     {
       Header: "Answer",
       accessor: "answer",
     },
-    {
-      Header: "Sender Email",
-      accessor: "userEmail",
-     
-    },
+   
     
     {
       Header: "Rating",
@@ -26,25 +27,37 @@ const columns = [
   ];
 const AnswersTable = () => {
     const dispatch = useDispatch();
+    const [id, setId] = useState("")
     useEffect(() => {
     
         dispatch(getAnswers(userInformation.questionId))
       
     }, [])
     const answers = useSelector((state) => state.getAnswers.answers);
+    console.log(id,"iddddddddddddddddddddddddd")
   return (
     <div>
+        <Container>
        <BasicTable
         // edit={(id) => {
         // //   setEditId(id);
         // //   setEditDialog(true);
         // }}
         // remove="deleteData"
+        checkbox={(answerid)=>{
+            if(!id?.includes(answerid)){
+                setId((item)=>[...item,answerid])
+            }
+            
+        }}
         counter={true}
         columns={columns}
         data={answers??[]}
         
       />
+      <Button variant="contained" onClick={()=>dispatch(rateAnswer(id))}>Submit</Button>
+      </Container>
+
     </div> 
    
   )
