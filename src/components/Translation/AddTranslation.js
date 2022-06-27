@@ -47,7 +47,7 @@ export default function BasicModal({ open, onClose }) {
     language: yup.string().required("Status is required."),
   });
   const onSubmit = (values, { resetForm }) => {
-    alert(JSON.stringify(values, null, 2));
+    // alert(JSON.stringify(values, null, 2));
     dispatch(createTranslation(values));
     //  navigate("/admin/question")
     dispatch(getTranslation());

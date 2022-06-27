@@ -1,7 +1,10 @@
 const User = require("../../../models/Users");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-
+// {
+//   "email":"user@gmail.com",
+//   "password":"12345678"
+// } answer/add-answer
 // Register Account
 const Register = async (req, res) => {
   try {
@@ -33,7 +36,12 @@ const Register = async (req, res) => {
         message: "Successfully account created",
       });
   } catch (error) {
-    if (error) next(error);
+    if (error) {
+      return res.status(404).json({
+        status: false,
+        message: "Invalid Email or Password",
+      });
+    }
   }
 };
 
@@ -47,7 +55,7 @@ const Login = async (req, res) => {
     // Compare with password
 
     const result = await bcrypt.compare(password, account.password);
-    console.log("result", account);
+    // console.log("result", account);
     if (result) {
       // Generate JWT token
       const token = await jwt.sign(
@@ -64,12 +72,17 @@ const Login = async (req, res) => {
       }
     }
 
-    return res.status(404).json({
+    return res.status(200).json({
       status: false,
       message: "Invalid e-mail or password",
     });
   } catch (error) {
-    if (error) next(error);
+    if (error) {
+      return res.status(404).json({
+        status: false,
+        message: "Invalid Email or Password",
+      });
+    }
   }
 };
 

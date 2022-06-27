@@ -12,6 +12,11 @@ const questionSchema = new Schema(
       required: true,
       trim: true,
     },
+    link: {
+      type: String,
+      required: false,
+      trim: true,
+    },
     rating_avg: {
       type: Number,
       trim: true,

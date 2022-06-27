@@ -15,10 +15,18 @@ const answerSchema = new Schema(
       required: true,
       trim: true,
     },
+    userName: {
+      type: String,
+      required: true,
+    },
+    phone: {
+      type: String,
+      required: true,
+    },
     rating: {
       type: Number,
       trim: true,
-      default: null,
+      default: 0,
     },
   },
   {

@@ -4,4 +4,5 @@ const AnswerController = require("../../controllers/AnswerController/AnswerContr
 
 router.post("/add-answer", AnswerController.addAnswer);
 router.get("/view-answers/:questionId", AnswerController.viewAllAnswers);
+router.post("/rate-answer", AnswerController.RateAnAnswer);
 module.exports = router;

@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 const addTranslation = async (req, res) => {
   try {
     const { text, translate, language } = req.body;
-    console.log("re", req.body);
+    // console.log("re", req.body);
     // Create account object
     const newTranslate = new Translate({
       text: text,
@@ -23,7 +23,7 @@ const addTranslation = async (req, res) => {
   } catch (error) {
     if (error) {
       return res.status(404).json({
-        status: true,
+        status: false,
         message: "Translation not Created",
       });
     }
@@ -49,7 +49,7 @@ const getAllTranslations = async (req, res) => {
   }
 };
 
-const UpdateTranslation = async (req, res, next) => {
+const UpdateTranslation = async (req, res) => {
   try {
     const { id, text, translate, language } = req.body;
     // await checkId(id)
@@ -63,11 +63,16 @@ const UpdateTranslation = async (req, res, next) => {
 
     res.status(201).json({ status: true, message: `Successfully updated` });
   } catch (error) {
-    if (error) next(error);
+    if (error) {
+      return res.status(404).json({
+        status: false,
+        message: "Network Error",
+      });
+    }
   }
 };
 
-const deleteTranslation = async (req, res, next) => {
+const deleteTranslation = async (req, res) => {
   try {
     let { id } = req.params;
     console.log("id", id);
