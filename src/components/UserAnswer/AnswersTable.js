@@ -18,10 +18,10 @@ const columns = [
     },
    
     
-    {
-      Header: "Rating",
-      accessor: "rating",
-    },
+    // {
+    //   Header: "Rating",
+    //   accessor: "rating",
+    // },
 
    
   ];
@@ -30,7 +30,7 @@ const AnswersTable = () => {
     const [id, setId] = useState("")
     useEffect(() => {
     
-        dispatch(getAnswers(userInformation.questionId))
+        dispatch(getAnswers(userInformation?.questionId))
       
     }, [])
     const answers = useSelector((state) => state.getAnswers.answers);
@@ -55,7 +55,7 @@ const AnswersTable = () => {
         data={answers??[]}
         
       />
-      <Button variant="contained" onClick={()=>dispatch(rateAnswer(id))}>Submit</Button>
+      <Button variant="contained" onClick={()=>id?.length==3? dispatch(rateAnswer(id)):alert("Please select only 3 answers")}>Submit</Button>
       </Container>
 
     </div> 

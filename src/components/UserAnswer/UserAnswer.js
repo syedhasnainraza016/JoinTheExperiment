@@ -3,15 +3,17 @@ import Paper from '@mui/material/Paper';
 import { Typography ,TextareaAutosize,Box,Button} from '@mui/material';
 import { getQuestionById,createAnswer} from "../../redux/actions/questionActions";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate ,useParams} from "react-router-dom";
 const userInformation = JSON.parse(localStorage.getItem("userInformation"));
 const UserAnswer = () => {
     const [answer, setAnswer] = useState("");
     // console.log("userInformation",userInformation.questionId)
+    let navigate=useNavigate()
     const dispatch = useDispatch();
   
     useEffect(() => {
         
-      dispatch(getQuestionById(userInformation.questionId))
+      dispatch(getQuestionById(userInformation?.questionId))
      
     },[])
 
@@ -19,6 +21,7 @@ const UserAnswer = () => {
         e.preventDefault();
         userInformation.answer=answer
     dispatch(createAnswer(userInformation))
+     navigate("/question/all-answer")
     }
     const questions = useSelector((state) => state.addQuestion.questions);
     // console.log("questionssssssssssssssss",questions)
@@ -27,7 +30,7 @@ const UserAnswer = () => {
  <Paper sx={{width:"60%",height:"500px"}} elevation={3} >
    <Box py={4} px={3} sx={{textAlign:"left"}}>
     <Typography  variant="h4">Question:</Typography>
-    <Typography variant="h5">{questions.question}</Typography>
+    <Typography variant="h5">{questions?.question}</Typography>
    </Box  >
    <Typography px={3} sx={{textAlign:"left"}} variant="h4">Your Answer</Typography>
    <Box px={3} sx={{textAlign:"left"}} >

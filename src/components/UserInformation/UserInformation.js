@@ -24,6 +24,7 @@ const UserInformation = () => {
           questionId
         }
         localStorage.setItem("userInformation", JSON.stringify(data));
+        navigate("/question/answer")
         // dispatch(login(data)).then((res)=>{
         //   console.log(res,"eeee")
         //   localStorage.setItem("user", JSON.stringify(res));
