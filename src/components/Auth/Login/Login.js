@@ -3,49 +3,33 @@ import "./Login.css";
 import { Typography, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { login,signup } from "../../../redux/actions/authAction";
+import { login, signup } from "../../../redux/actions/authAction";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
- let navigate=useNavigate()
+  let navigate = useNavigate();
 
-//   const { error } = useSelector((state) => state.user);
-//   const { message } = useSelector((state) => state.like);
-const user = useSelector((state) => state.login.user);
+  //   const { error } = useSelector((state) => state.user);
+  //   const { message } = useSelector((state) => state.like);
+  const user = useSelector((state) => state.login.user);
   const loginHandler = (e) => {
     e.preventDefault();
-    let data={
+    let data = {
       email,
-      password
-    }
-// console.log(e,"eeeeeeeeeeeeeeeeeeeeeee")
-    dispatch(login(data)).then((res)=>{
-      console.log(res,"eeee")
+      password,
+    };
+    // console.log(e,"eeeeeeeeeeeeeeeeeeeeeee")
+    dispatch(login(data)).then((res) => {
+      console.log(res, "eeee");
       localStorage.setItem("user", JSON.stringify(res));
-      if(res?.account?.role=="admin"){
-        navigate("/admin")
+      if (res?.account?.role == "admin") {
+        navigate("/admin");
       }
     });
   };
-
- 
-  // console.log(user,"eeeeeeeeeeeeeeeeeeeeeee")
-  // if(user.account){
-  //   localStorage.setItem("user", JSON.stringify(user));
-  // }
-//   useEffect(() => {
-//     if (error) {
-//       alert.error(error);
-//       dispatch({ type: "clearErrors" });
-//     }
-//     if (message) {
-//       alert.success(message);
-//       dispatch({ type: "clearMessage" });
-//     }
-//   }, [alert, error, dispatch, message]);
 
   return (
     <div className="login">
@@ -70,15 +54,15 @@ const user = useSelector((state) => state.login.user);
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <Link to="/forgot/password">
+        {/* <Link to="/forgot/password">
           <Typography>Forgot Password?</Typography>
-        </Link>
+        </Link> */}
 
         <Button type="submit">Login</Button>
 
-        <Link to="/register">
+        {/* <Link to="/register">
           <Typography>New User?</Typography>
-        </Link>
+        </Link> */}
       </form>
     </div>
   );
