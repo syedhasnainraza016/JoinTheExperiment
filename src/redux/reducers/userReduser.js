@@ -33,6 +33,8 @@ export const register = (state = intialState, { type, payload }) => {
         return { ...state, questions: [...state.questions,payload] };
         case ActionTypes.GET_QUESTION:
           return { ...state, questions: payload}
+          case ActionTypes.GET_QUESTION_BYID:
+          return { ...state, questions: payload}
           case ActionTypes.UPDATE_QUESTION:
             return state.map((item) => (item._id === payload._id ? payload : item));
             case ActionTypes.DELETE_QUESTION:
@@ -60,9 +62,11 @@ export const register = (state = intialState, { type, payload }) => {
 
 
   export const getAnswers = (state = intialState, { type, payload }) => {
-  
+  console.log(type, 'type',payload,"anser data")
+
     switch (type) {
-      
+      case ActionTypes.CREATE_ANSWER:
+        return { ...state, answers: [...state.questions,payload] };
         case ActionTypes.GET_ANSWERS:
           return { ...state, answers: payload}
           

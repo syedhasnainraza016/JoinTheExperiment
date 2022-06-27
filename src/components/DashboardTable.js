@@ -37,7 +37,6 @@ const DashboardTable = () => {
   };
   const questions = useSelector((state) => state.addQuestion.questions);
   const answers = useSelector((state) => state.getAnswers.answers);
-  console.log(answers,"answersaaaaaaaaaaaaaaaaaaaa")
   // console.log(questions,"asdfghjklkjhgfds")
   return (
     <div>

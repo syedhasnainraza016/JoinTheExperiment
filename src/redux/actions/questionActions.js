@@ -24,7 +24,17 @@ export const createQuestion = (question) => async (dispatch) => {
     }
   };
 
-
+  export const getQuestionById = (id) => async (dispatch) => {
+    try {
+      const { data } = await api.getQuestionById(id);
+      // console.log('get-questions',data);
+      const question = data.data;
+      // console.log('questions',questions);
+     return dispatch({ type:ActionTypes.GET_QUESTION_BYID, payload:question });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   export const updateQuestion = ( question) => async (dispatch) => {
     try {
@@ -55,8 +65,18 @@ export const createQuestion = (question) => async (dispatch) => {
       const { data } = await api.getAnswer(id);
       // console.log('get-questions',data);
       const answers = data.data;
-      // console.log('questionsaaaaaaaaaaaaaaaaaaaa',answers);
+      console.log('questions',answers);
      return dispatch({ type:ActionTypes.GET_ANSWERS, payload:answers  });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  export const createAnswer = (answer) => async (dispatch) => {
+    try {
+      const { data } = await api.createAnswer(answer);
+
+      // dispatch({ type:ActionTypes.CREATE_QUESTION, payload: data });
     } catch (error) {
       console.log(error.message);
     }
