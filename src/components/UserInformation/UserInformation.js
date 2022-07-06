@@ -33,7 +33,12 @@ const UserInformation = () => {
     //   }
     // });
   };
+  // function isNumberKey(evt) {
+  //   var charCode = evt.which ? evt.which : event.keyCode;
+  //   if (charCode > 31 && (charCode < 48 || charCode > 57)) return false;
 
+  //   return true;
+  // }
   return (
     <div className="login">
       <form className="loginForm" onSubmit={loginHandler}>
@@ -50,11 +55,11 @@ const UserInformation = () => {
         />
 
         <input
-          type="number"
+          type="text"
           placeholder="Phone Number"
           required
           value={phone}
-          onChange={(e) => setPhone(e.target.value)}
+          onChange={(e) => setPhone(e.target.value.replace(/\D/g, ""))}
         />
 
         <Box mt={4}>

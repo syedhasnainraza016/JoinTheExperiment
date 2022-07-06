@@ -38,14 +38,18 @@ const addAnswer = async (req, res) => {
 const viewAllAnswers = async (req, res) => {
   try {
     let { questionId } = req.params;
-
+    let sortedArray;
     // console.log("questionId", questionId);
     let Answers = await Answer.find({ questionId: questionId }).exec();
     if (Answers.length > 0) {
+      sortedArray = Answers.sort((a, b) =>
+        a.rating < b.rating ? 1 : b.rating < a.rating ? -1 : 0
+      );
+      console.log("sortedArray", sortedArray);
       return res.status(200).json({
         status: true,
         message: "Answers Found Successfully",
-        data: Answers,
+        data: sortedArray,
       });
 
       // let AllAnswers;
@@ -118,8 +122,14 @@ const RateAnAnswer = async (req, res) => {
   } catch {}
 };
 
+const bestThreeAnswers = async (req, res) => {
+  let { question_id } = req.params;
+  let answers = await Answer.find({ questionId: question_id });
+};
+
 module.exports = {
   viewAllAnswers,
   addAnswer,
   RateAnAnswer,
+  bestThreeAnswers,
 };

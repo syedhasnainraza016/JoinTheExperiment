@@ -5,7 +5,7 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import ListIcon from "@mui/icons-material/List";
 import { ListItemButton } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import CreditScoreIcon from '@mui/icons-material/CreditScore';
+import CreditScoreIcon from "@mui/icons-material/CreditScore";
 
 const MainListItems = () => {
   const navigate = useNavigate();
@@ -23,12 +23,12 @@ const MainListItems = () => {
         </ListItemIcon>
         <ListItemText primary="Questions" />
       </ListItemButton>
-      <ListItemButton onClick={() => navigate("/admin/translation")}>
+      {/* <ListItemButton onClick={() => navigate("/admin/translation")}>
         <ListItemIcon>
           <ListIcon />
         </ListItemIcon>
         <ListItemText primary="Translation" />
-      </ListItemButton>
+      </ListItemButton> */}
     </div>
   );
 };

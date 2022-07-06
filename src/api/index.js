@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const url = "http://joinexperiment.geeklone.com:4000/api";
-const url = "http://192.168.100.52:4000/api";
+const url = "http://joinexperiment.geeklone.com:4000/api";
+//           const url = "http://192.168.100.52:4000/api";
 
 export const createUser = (data) => axios.post(`${url}/auth/login`, data);
 export const registerUser = (data) => axios.post(`${url}/register`, data);

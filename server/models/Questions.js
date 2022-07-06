@@ -1,7 +1,12 @@
 const { Schema, model } = require("mongoose");
+const shortid = require("shortid");
 
 const questionSchema = new Schema(
   {
+    _id: {
+      type: String,
+      default: shortid.generate,
+    },
     question: {
       type: String,
       required: true,

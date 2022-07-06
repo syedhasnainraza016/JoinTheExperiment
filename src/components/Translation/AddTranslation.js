@@ -138,6 +138,13 @@ export default function BasicModal({ open, onClose }) {
                 <Button type="submit" variant="contained">
                   Submit
                 </Button>
+                <Button
+                  sx={{ marginLeft: "10px" }}
+                  onClick={() => onClose()}
+                  variant="contained"
+                >
+                  Cancel
+                </Button>
               </Box>
             </Box>
           </Card>

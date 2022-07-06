@@ -7,18 +7,21 @@ import {
 } from "../../redux/actions/questionActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-const userInformation = JSON.parse(localStorage.getItem("userInformation"));
 const UserAnswer = () => {
   const [answer, setAnswer] = useState("");
   // console.log("userInformation",userInformation.questionId)
   let navigate = useNavigate();
   const dispatch = useDispatch();
-
+  let userInformation;
   useEffect(() => {
+    userInformation = JSON.parse(localStorage.getItem("userInformation"));
+    console.log("userInformation", userInformation);
     dispatch(getQuestionById(userInformation?.questionId));
   }, []);
 
   const SubmitHandler = (e) => {
+    console.log("answer", answer);
+    userInformation = JSON.parse(localStorage.getItem("userInformation"));
     e.preventDefault();
     userInformation.answer = answer;
     dispatch(createAnswer(userInformation));

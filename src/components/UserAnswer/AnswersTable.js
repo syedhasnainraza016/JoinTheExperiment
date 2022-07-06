@@ -78,7 +78,7 @@ const AnswersTable = () => {
               height: "100vh",
             }}
           >
-            Wait while other answersing...
+            Een momentje a.u.b., de anderen zijn nog bezig...
           </Typography>
         )}
       </Container>
