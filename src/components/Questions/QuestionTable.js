@@ -8,18 +8,19 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import BasicModal from "./AddQuestion";
 import { Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { getQuestions,deleteQuestion } from "../../redux/actions/questionActions";
+import {
+  getQuestions,
+  deleteQuestion,
+} from "../../redux/actions/questionActions";
 import EditQuestion from "./EditQuestion";
 
 const QuestionTable = () => {
- 
   const [data, setData] = React.useState([]);
   const [editDialog, setEditDialog] = useState(false);
   const [editId, setEditId] = useState();
 
-
   const [createDialog, setCreateDialog] = useState(false);
-  
+
   const dispatch = useDispatch();
   const questions = useSelector((state) => state.addQuestion.questions);
 
@@ -33,15 +34,19 @@ const QuestionTable = () => {
       accessor: "question",
     },
     {
+      Header: "Link",
+      accessor: "link",
+    },
+    {
       Header: "Status",
       accessor: "status",
+      Cell: ({ value }) => <span>{value == 1 ? "Public" : "Private"}</span>,
     },
   ];
   const deleteData = (id) => {
-  
-    dispatch(deleteQuestion(id)).then((res)=>dispatch(getQuestions()))
+    dispatch(deleteQuestion(id)).then((res) => dispatch(getQuestions()));
   };
-  
+
   useEffect(() => {
     dispatch(getQuestions());
   }, []);
@@ -62,21 +67,22 @@ const QuestionTable = () => {
 
       <BasicTable
         edit={(id) => {
-            setEditId(id);
-            setEditDialog(true);
+          setEditId(id);
+          setEditDialog(true);
         }}
         remove={deleteData}
         counter={true}
         columns={columns}
-        data={questions??[]}
+        data={questions ?? []}
       />
-      <BasicModal open={createDialog} onClose={() => setCreateDialog(false)}  />
-      <EditQuestion onClose={() => {
+      <BasicModal open={createDialog} onClose={() => setCreateDialog(false)} />
+      <EditQuestion
+        onClose={() => {
           setEditDialog(false);
         }}
         open={editDialog}
-        initialData={questions?.find((item) => item._id=== editId)}
-        />
+        initialData={questions?.find((item) => item._id === editId)}
+      />
     </div>
   );
 };

@@ -1,13 +1,13 @@
-import React from 'react'
+import React from "react";
 
-import Translation from '../../components/Translation/Translation'
+import Translation from "../../components/Translation/Translation";
 
 const QuestionScreen = () => {
   return (
     <div>
-        <Translation/>
+      <Translation />
     </div>
-  )
-}
+  );
+};
 
-export default QuestionScreen
+export default QuestionScreen;

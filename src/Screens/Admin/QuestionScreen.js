@@ -1,13 +1,13 @@
-import React from 'react'
-import DashboardTable from '../../components/DashboardTable'
-import QuestionTable from '../../components/Questions/QuestionTable'
+import React from "react";
+// import DashboardTable from '../../components/DashboardTable'
+import QuestionTable from "../../components/Questions/QuestionTable";
 
 const QuestionScreen = () => {
   return (
     <div>
-        <QuestionTable/>
+      <QuestionTable />
     </div>
-  )
-}
+  );
+};
 
-export default QuestionScreen
+export default QuestionScreen;

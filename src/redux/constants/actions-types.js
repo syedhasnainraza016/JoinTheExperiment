@@ -13,4 +13,6 @@ export const ActionTypes = {
    GET_QUESTION_BYID:"GET_QUESTION_BYID",
    CREATE_ANSWER:"CREATE_ANSWER",
    Rating_ANSWER:"Rating_ANSWER",
+   CHECK_ANSWER:"CHECK_ANSWER",
+   Rating_RECORD:"Rating_RECORD",
   };

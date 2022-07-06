@@ -44,9 +44,9 @@ export default function EditQuestion({ initialData, open, onClose, }) {
   const onSubmit = (values, { resetForm }) => {
     // alert(JSON.stringify(values, null, 2));
     values.id=initialData._id
-    dispatch(updateQuestion(values))
+    dispatch(updateQuestion(values)).then((res) => dispatch(getQuestions()))
   //  navigate("/admin/question")
-    dispatch(getQuestions());
+ 
     resetForm()
     onClose()
   };

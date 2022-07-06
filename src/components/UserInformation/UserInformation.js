@@ -13,15 +13,17 @@ const UserInformation = () => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
   const params = useParams();
-  console.log(params.id, "paramsss");
+   console.log(window.history,"paramsss")
+   
   let questionId = params.id;
   const loginHandler = (e) => {
-    console.log(e, "eeeeeeeeeeeeeeeeeee");
+    // console.log(e,"eeeeeeeeeeeeeeeeeee")
     e.preventDefault();
     let data = {
       userName,
       phone,
       questionId,
+      link: window.location.href
     };
     localStorage.setItem("userInformation", JSON.stringify(data));
     navigate("/question/answer");
@@ -33,7 +35,21 @@ const UserInformation = () => {
     //   }
     // });
   };
+  // function isNumberKey(evt) {
+  //   var charCode = evt.which ? evt.which : event.keyCode;
+  //   if (charCode > 31 && (charCode < 48 || charCode > 57)) return false;
 
+  //   return true;
+  // }
+  useEffect(() => {
+    function preventBack() {
+      window.history.forward(); 
+  }
+  preventBack()
+  setTimeout("preventBack()", 0);
+    
+  window.onunload =()=>null
+  },[])
   return (
     <div className="login">
       <form className="loginForm" onSubmit={loginHandler}>
@@ -50,11 +66,11 @@ const UserInformation = () => {
         />
 
         <input
-          type="number"
-          placeholder="number"
+          type="text"
+          placeholder="Phone Number"
           required
           value={phone}
-          onChange={(e) => setPhone(e.target.value)}
+          onChange={(e) => setPhone(e.target.value.replace(/\D/g, ""))}
         />
 
         <Box mt={4}>

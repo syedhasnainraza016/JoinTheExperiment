@@ -13,7 +13,10 @@ import { Card } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { createQuestion,getQuestions } from "../../redux/actions/questionActions";
+import {
+  createQuestion,
+  getQuestions,
+} from "../../redux/actions/questionActions";
 import { useNavigate } from "react-router-dom";
 const style = {
   position: "absolute",
@@ -31,7 +34,7 @@ const style = {
 export default function BasicModal({ open, onClose }) {
   const [age, setAge] = React.useState("");
   const dispatch = useDispatch();
- let navigate=useNavigate()
+  let navigate = useNavigate();
 
   const initialValues = {
     question: "",
@@ -43,11 +46,12 @@ export default function BasicModal({ open, onClose }) {
   });
   const onSubmit = (values, { resetForm }) => {
     // alert(JSON.stringify(values, null, 2));
-    dispatch(createQuestion(values))
-  //  navigate("/admin/question")
+    
+    dispatch(createQuestion(values)).then((res) => dispatch(getQuestions()));
+    //  navigate("/admin/question")
     dispatch(getQuestions());
-    resetForm()
-    onClose()
+    resetForm();
+    onClose();
   };
   const formik = useFormik({ initialValues, validationSchema, onSubmit });
 
@@ -81,7 +85,9 @@ export default function BasicModal({ open, onClose }) {
                 value={formik.values.question}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                error={formik.touched.question && Boolean(formik.errors.question)}
+                error={
+                  formik.touched.question && Boolean(formik.errors.question)
+                }
                 // helperText={formik.touched.question && formik.errors.question}
                 aria-label="minimum height"
                 minRows={5}
@@ -100,7 +106,7 @@ export default function BasicModal({ open, onClose }) {
               </Typography>
               <Box sx={{ minWidth: 120, maxWidth: "100%" }}>
                 <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">Age</InputLabel>
+                  <InputLabel id="demo-simple-select-label">Status</InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
@@ -123,6 +129,13 @@ export default function BasicModal({ open, onClose }) {
               <Box mt={4}>
                 <Button type="submit" variant="contained">
                   Submit
+                </Button>
+                <Button
+                  sx={{ marginLeft: "10px" }}
+                  onClick={() => onClose()}
+                  variant="contained"
+                >
+                  Cancel
                 </Button>
               </Box>
             </Box>
