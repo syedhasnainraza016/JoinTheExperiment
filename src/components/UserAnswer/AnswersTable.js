@@ -27,7 +27,7 @@ const columns = [
 ];
 const AnswersTable = () => {
   const dispatch = useDispatch();
-  const [id, setId] = useState("");
+  const [id, setId] = useState([]);
   const [userAnswer, setUserAnswer] = useState([]);
   const [record, setRecord] = useState(null);
   let navigate = useNavigate();
@@ -39,9 +39,11 @@ const AnswersTable = () => {
   }, []);
   useEffect(() => {
     dispatch(ratingRecord( userInformation)).then((res) => res.length > 0 ? setRecord(res[0]) : setRecord(null) )
+   
   },[])
   const answers = useSelector((state) => state.getAnswers.answers);
- console.log("userAnswer", userAnswer)
+//  console.log("userAnswer", userAnswer)
+console.log("idididiiddiid",id.length)
  let data={userInformation,id}
   return (
     <div>
@@ -68,7 +70,11 @@ const AnswersTable = () => {
               // }}
               // remove="deleteData"
               checkbox={(answerid) => {
-                if (!id?.includes(answerid)) {
+               
+                if(id.includes(answerid)){
+                 setId( id.filter((id)=>id!=answerid))
+                }
+                if (!id?.includes(answerid) ) {
                   setId((item) => [...item, answerid]);
                 }
               }}
